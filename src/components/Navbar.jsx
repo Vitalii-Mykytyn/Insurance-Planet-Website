@@ -1,4 +1,3 @@
-// 📦 src/components/Navbar.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -17,7 +16,6 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/10 backdrop-blur-md border-b border-white/20 shadow-lg transition-all">
       <div className="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Left: Logo */}
         <div className="flex items-center gap-6">
           <Link to="/">
             <img
@@ -28,45 +26,31 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Center: Nav links */}
         <div className="hidden lg:flex gap-8 items-center text-[15px] font-medium text-[#FAF3F0]">
           <NavLink to="/" label="Home" />
           <Dropdown
             label="Insurance"
-            items={[
-              { path: "/insurance/auto", label: "Auto" },
-              { path: "/insurance/home", label: "Home" },
-              { path: "/insurance/commercial", label: "Commercial Auto" },
-              { path: "/insurance/business", label: "Business" },
-            ]}
+            items={["Auto", "Home", "Commercial Auto", "Business"]}
+            base="/insurance"
           />
           <Dropdown
             label="About"
-            items={[
-              { path: "/about/about-us", label: "About Us" },
-              { path: "https://facebook.com", label: "Facebook" },
-              { path: "https://instagram.com", label: "Instagram" },
-              { path: "/about/privacy-policy", label: "Privacy Policy" },
-            ]}
+            items={["About Us", "Privacy Policy"]}
+            base="/about"
           />
           <NavLink to="/testimonials" label="Testimonials" />
           <Dropdown
             label="Contact"
-            items={[
-              { path: "/contact/agents", label: "Agents" },
-              { path: "/contact/ContactUs", label: "Contact Us" },
-            ]}
+            items={["Agents", "Contact Us"]}
+            base="/contact"
           />
           <Dropdown
             label="Education"
-            items={[
-              { path: "/education/overview", label: "Overview" },
-              { path: "/education/resources", label: "Resources" },
-            ]}
+            items={["Overview", "Resources"]}
+            base="/education"
           />
         </div>
 
-        {/* Right: CTA + Icons */}
         <div className="hidden lg:flex items-center gap-5">
           <Link
             to="/"
@@ -81,9 +65,10 @@ const Navbar = () => {
                     "duration-500",
                     "shadow-xl"
                   );
-                  setTimeout(() => {
-                    el.classList.remove("scale-[1.03]", "shadow-xl");
-                  }, 1500);
+                  setTimeout(
+                    () => el.classList.remove("scale-[1.03]", "shadow-xl"),
+                    1500
+                  );
                 }
               }, 50);
             }}
@@ -116,7 +101,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           className="lg:hidden text-white"
           onClick={toggleMenu}
@@ -126,51 +110,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="lg:hidden px-6 pt-2 pb-6 space-y-4 bg-white/10 text-[#FAF3F0] backdrop-blur-md border-t border-white/10">
-          <MobileLink to="/">Home</MobileLink>
-          <MobileGroup
-            label="Insurance"
-            links={["auto", "home", "commercial", "business"]}
-            base="/insurance"
-          />
-          <MobileGroup
-            label="About"
-            links={["about-us", "privacy-policy"]}
-            base="/about"
-          />
-          <a
-            href="https://facebook.com"
-            className="block text-sm py-2 border-b border-white/20 hover:text-[#FFB347]"
-          >
-            Facebook
-          </a>
-          <a
-            href="https://instagram.com"
-            className="block text-sm py-2 border-b border-white/20 hover:text-[#FFB347]"
-          >
-            Instagram
-          </a>
-          <MobileLink to="/testimonials">Testimonials</MobileLink>
-          <MobileGroup
-            label="Contact"
-            links={["agents", "Contact Us"]}
-            base="/contact"
-          />
-          <MobileGroup
-            label="Education"
-            links={["overview", "resources"]}
-            base="/education"
-          />
-          <Link
-            to="/quote"
-            className="block w-full text-center mt-4 bg-gradient-to-r from-[#FF6B6B] to-[#FFB347] text-white font-semibold py-2 rounded-full hover:scale-105 transition"
-          >
-            Start Your Quote
-          </Link>
-        </div>
-      )}
+      {isOpen && <MobileMenu toggleMenu={toggleMenu} />}
     </nav>
   );
 };
@@ -185,14 +125,17 @@ const SocialIcon = ({ Icon }) => (
   <Icon className="hover:text-[#FFB347] transition-colors cursor-pointer" />
 );
 
-const Dropdown = ({ label, items }) => (
+const Dropdown = ({ label, items, base }) => (
   <div className="group relative">
     <span className="cursor-pointer hover:text-[#FFB347]">{label}</span>
-    <ul className="absolute left-0 top-[calc(100%+0.5rem)] w-48 bg-gradient-to-br from-[#fff] to-[#f9f9f9] text-sm text-gray-800 rounded shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 invisible group-hover:visible translate-y-1 group-hover:translate-y-0 transition-all duration-200 z-40">
-      {items.map(({ path, label }) => (
-        <li key={path}>
-          <Link to={path} className="block px-4 py-2 hover:bg-gray-100">
-            {label}
+    <ul className="absolute left-0 top-[calc(100%+0.5rem)] w-48 bg-gradient-to-br from-white to-[#f9f9f9] text-sm text-gray-800 rounded shadow-lg border border-gray-200 opacity-0 group-hover:opacity-100 invisible group-hover:visible translate-y-1 group-hover:translate-y-0 transition-all duration-200 z-40">
+      {items.map((item, idx) => (
+        <li key={idx}>
+          <Link
+            to={`${base}/${formatRoute(item)}`}
+            className="block px-4 py-2 hover:bg-gray-100"
+          >
+            {item}
           </Link>
         </li>
       ))}
@@ -200,22 +143,63 @@ const Dropdown = ({ label, items }) => (
   </div>
 );
 
-const MobileLink = ({ to, children }) => (
+const MobileMenu = ({ toggleMenu }) => (
+  <div className="lg:hidden px-6 pt-2 pb-6 space-y-4 bg-white/10 text-[#FAF3F0] backdrop-blur-md border-t border-white/10">
+    <MobileLink to="/" label="Home" />
+    <MobileGroup
+      label="Insurance"
+      links={["Auto", "Home", "Commercial Auto", "Business"]}
+      base="/insurance"
+    />
+    <MobileGroup
+      label="About"
+      links={["About Us", "Privacy Policy"]}
+      base="/about"
+    />
+    <a
+      href="https://facebook.com"
+      className="block text-sm py-2 border-b border-white/20 hover:text-[#FFB347]"
+    >
+      Facebook
+    </a>
+    <a
+      href="https://instagram.com"
+      className="block text-sm py-2 border-b border-white/20 hover:text-[#FFB347]"
+    >
+      Instagram
+    </a>
+    <MobileLink to="/testimonials" label="Testimonials" />
+    <MobileGroup
+      label="Contact"
+      links={["Agents", "Contact Us"]}
+      base="/contact"
+    />
+    <MobileGroup
+      label="Education"
+      links={["Overview", "Resources"]}
+      base="/education"
+    />
+    <Link
+      to="/quote"
+      onClick={toggleMenu}
+      className="block w-full text-center mt-4 bg-gradient-to-r from-[#FF6B6B] to-[#FFB347] text-white font-semibold py-2 rounded-full hover:scale-105 transition"
+    >
+      Start Your Quote
+    </Link>
+  </div>
+);
+
+const MobileLink = ({ to, label }) => (
   <Link
     to={to}
     className="block text-sm py-2 border-b border-white/20 hover:text-[#FFB347]"
   >
-    {children}
+    {label}
   </Link>
 );
 
 const MobileGroup = ({ label, links, base }) => {
   const [open, setOpen] = useState(false);
-
-  const formatRoute = (text) => {
-    if (text === "Contact Us") return "ContactUs";
-    return text.toLowerCase().replace(/\s+/g, "-");
-  };
 
   return (
     <div>
@@ -243,5 +227,7 @@ const MobileGroup = ({ label, links, base }) => {
     </div>
   );
 };
+
+const formatRoute = (text) => text.toLowerCase().replace(/\s+/g, "-");
 
 export default Navbar;
