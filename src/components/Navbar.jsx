@@ -180,7 +180,7 @@ const MobileMenu = ({ toggleMenu }) => (
       base="/education"
     />
     <Link
-      to="/quote"
+      to="/contact/ContactUs"
       onClick={toggleMenu}
       className="block w-full text-center mt-4 bg-gradient-to-r from-[#FF6B6B] to-[#FFB347] text-white font-semibold py-2 rounded-full hover:scale-105 transition"
     >
