@@ -1,4 +1,3 @@
-// CaptchaAndSubmit.jsx
 import React, { useRef, useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -6,6 +5,7 @@ const CaptchaAndSubmit = ({
   captchaChecked,
   setCaptchaChecked,
   resetTrigger,
+  form,
 }) => {
   const recaptchaRef = useRef(null);
 
@@ -20,6 +20,12 @@ const CaptchaAndSubmit = ({
     }
   }, [resetTrigger, setCaptchaChecked]);
 
+  const isSubmitDisabled =
+    !captchaChecked ||
+    !form?.ownerName?.trim() ||
+    !form?.ownerPhone?.trim() ||
+    !form?.ownerEmail?.trim();
+
   return (
     <div className="transition-all duration-500 ease-in-out">
       <div className="mt-8">
@@ -30,12 +36,13 @@ const CaptchaAndSubmit = ({
           className="scale-[0.9] md:scale-100 transition-transform duration-300 ease-in-out"
         />
       </div>
+
       <div className="mt-8">
         <button
           type="submit"
-          disabled={!captchaChecked}
+          disabled={isSubmitDisabled}
           className={`w-full py-3 px-6 rounded-full text-base font-semibold tracking-wide transition-all duration-300 ease-in-out ${
-            captchaChecked
+            !isSubmitDisabled
               ? "bg-gradient-to-r from-[#FF6B6B] to-[#FFB347] hover:scale-105 hover:shadow-lg"
               : "bg-gray-500 cursor-not-allowed"
           }`}

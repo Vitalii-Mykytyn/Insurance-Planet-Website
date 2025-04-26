@@ -45,6 +45,7 @@ const CommonFields = ({
             value={form.ownerName || ""}
             onChange={handleChange}
             className={inputClass}
+            required
           />
         </div>
         <div>
@@ -117,6 +118,7 @@ const CommonFields = ({
           value={form.ownerPhone || ""}
           onChange={handleValidatedChange}
           className={inputClass}
+          required
         />
         <input
           name="ownerEmail"
@@ -125,6 +127,7 @@ const CommonFields = ({
           value={form.ownerEmail || ""}
           onChange={handleValidatedChange}
           className={inputClass}
+          required
         />
       </div>
 

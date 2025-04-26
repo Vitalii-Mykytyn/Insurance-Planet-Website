@@ -32,6 +32,7 @@ const AdditionalDriversList = ({
               }
               className={inputClass}
               placeholder="Enter full name"
+              required
             />
           </div>
           <div>
@@ -43,6 +44,7 @@ const AdditionalDriversList = ({
               value={driver.dob}
               onChange={(e) => handleDriverChange(index, "dob", e.target.value)}
               className={inputClass}
+              required
             />
           </div>
           <div>
@@ -55,6 +57,7 @@ const AdditionalDriversList = ({
               }
               className={inputClass}
               placeholder="e.g., FL"
+              required
             />
           </div>
           <div>
@@ -67,6 +70,7 @@ const AdditionalDriversList = ({
               }
               className={inputClass}
               placeholder="License #"
+              required
             />
           </div>
           <div>
@@ -83,6 +87,7 @@ const AdditionalDriversList = ({
                       handleDriverChange(index, "drives", e.target.value)
                     }
                     className="accent-[#FF6B6B]"
+                    required
                   />
                   {val}
                 </label>
