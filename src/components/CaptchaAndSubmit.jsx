@@ -25,7 +25,7 @@ const CaptchaAndSubmit = ({
       <div className="mt-8">
         <ReCAPTCHA
           ref={recaptchaRef}
-          sitekey="6LdoPwsrAAAAACTW2aAIIY264rfbS6PEIRMGapUg"
+          sitekey="6LcgcCUrAAAAANCgaZZ9h47VQNT1WBKD83yBpkdI"
           onChange={handleCaptcha}
           className="scale-[0.9] md:scale-100 transition-transform duration-300 ease-in-out"
         />
