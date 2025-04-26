@@ -1,7 +1,7 @@
 // 📦 src/pages/Home.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import highwayImage from "../assets/images/Backgrounds/SectionOne.png";
+import highwayImage from "../assets/images/Backgrounds/sectionOne.png";
 import HeroQuoteBox from "../components/HomePageApplication/HeroQuoteBox";
 import WhyChooseUs from "../components/HomePageApplication/WhyChooseUs";
 import InsuranceTypeSlider from "../components//HomePageApplication/InsuranceTypeSlider";
