@@ -228,6 +228,10 @@ const MobileGroup = ({ label, links, base }) => {
   );
 };
 
-const formatRoute = (text) => text.toLowerCase().replace(/\s+/g, "-");
+const formatRoute = (text) => {
+  if (text === "Commercial Auto") return "commercial";
+  if (text === "Contact Us") return "ContactUs";
+  return text.toLowerCase().replace(/\s+/g, "-");
+};
 
 export default Navbar;
