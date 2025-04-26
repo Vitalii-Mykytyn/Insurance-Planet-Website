@@ -11,7 +11,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import Bg from "../../assets/images/Backgrounds/SectionTwo.jpg";
+import Bg from "../../assets/images/Backgrounds/sectionTwo.jpg";
 
 // Images
 import AutoImg from "../../assets/images/insurance_type/Auto.jpg";
