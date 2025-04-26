@@ -45,6 +45,7 @@ const PrimaryDriverFields = ({ form, handleChange }) => {
             onChange={handleChange}
             className={inputClass}
             placeholder="example@mail.com"
+            required
           />
         </div>
 
@@ -57,6 +58,7 @@ const PrimaryDriverFields = ({ form, handleChange }) => {
             onChange={handleChange}
             className={inputClass}
             placeholder="e.g., 904-123-4567"
+            required
           />
         </div>
       </div>

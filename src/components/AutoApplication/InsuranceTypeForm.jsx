@@ -39,6 +39,7 @@ const InsuranceTypeForm = ({
           onChange={handleChange}
           className={inputClass}
           placeholder="Enter your full legal name"
+          required
         />
       </div>
 
@@ -63,6 +64,7 @@ const InsuranceTypeForm = ({
             onChange={handleChange}
             className={inputClass}
             placeholder="e.g., FL"
+            required
           />
         </div>
 

@@ -17,6 +17,7 @@ const ApplicantInfo = ({ form, handleChange }) => {
           onChange={handleChange}
           className={inputClass}
           placeholder="John Doe"
+          required
         />
       </div>
 
@@ -29,6 +30,7 @@ const ApplicantInfo = ({ form, handleChange }) => {
             onChange={handleChange}
             className={inputClass}
             placeholder="(555) 555-5555"
+            required
           />
         </div>
         <div>
@@ -39,6 +41,7 @@ const ApplicantInfo = ({ form, handleChange }) => {
             onChange={handleChange}
             className={inputClass}
             placeholder="you@example.com"
+            required
           />
         </div>
       </div>

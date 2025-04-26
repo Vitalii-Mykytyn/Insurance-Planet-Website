@@ -1,4 +1,3 @@
-// 📦 src/components/HomeApplication/CommonFields.jsx
 import React from "react";
 
 const USAGE_TYPES = ["Primary", "Secondary", "Rental"];
@@ -23,7 +22,7 @@ const CommonFields = ({
       (name === "coApplicantPhone" && !validatePhone(value)) ||
       (name === "coApplicantEmail" && !validateEmail(value))
     ) {
-      e.target.setCustomValidity("Invalid input");
+      e.target.setCustomValidity("Invalid format!");
     } else {
       e.target.setCustomValidity("");
     }
@@ -37,7 +36,7 @@ const CommonFields = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block mb-2 text-sm font-semibold tracking-wide">
-            Owner's Name
+            Owner's Full Name <span className="text-red-400">*</span>
           </label>
           <input
             type="text"
@@ -62,73 +61,33 @@ const CommonFields = ({
         </div>
       </div>
 
-      <div>
-        <label className="inline-flex items-center space-x-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label className="block mb-2 text-sm font-semibold tracking-wide">
+            Owner's Phone <span className="text-red-400">*</span>
+          </label>
           <input
-            type="checkbox"
-            name="coApplicantToggle"
-            checked={isCoApplicant}
-            onChange={handleCheckboxChange}
-            className="accent-[#FF6B6B] scale-125"
-          />
-          <span className="text-sm font-medium">Include Co-Applicant?</span>
-        </label>
-      </div>
-
-      {isCoApplicant && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/10">
-          <input
-            name="coApplicantName"
-            placeholder="Co-Applicant Name"
-            value={form.coApplicantName || ""}
-            onChange={handleChange}
-            className={inputClass}
-          />
-          <input
-            name="coApplicantDOB"
-            type="date"
-            value={form.coApplicantDOB || ""}
-            onChange={handleChange}
-            className={inputClass}
-          />
-          <input
-            name="coApplicantPhone"
             type="tel"
-            placeholder="Co-Applicant Phone"
-            value={form.coApplicantPhone || ""}
+            name="ownerPhone"
+            value={form.ownerPhone || ""}
             onChange={handleValidatedChange}
             className={inputClass}
-          />
-          <input
-            name="coApplicantEmail"
-            type="email"
-            placeholder="Co-Applicant Email"
-            value={form.coApplicantEmail || ""}
-            onChange={handleValidatedChange}
-            className={inputClass}
+            required
           />
         </div>
-      )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <input
-          name="ownerPhone"
-          type="tel"
-          placeholder="Owner's Phone"
-          value={form.ownerPhone || ""}
-          onChange={handleValidatedChange}
-          className={inputClass}
-          required
-        />
-        <input
-          name="ownerEmail"
-          type="email"
-          placeholder="Owner's Email"
-          value={form.ownerEmail || ""}
-          onChange={handleValidatedChange}
-          className={inputClass}
-          required
-        />
+        <div>
+          <label className="block mb-2 text-sm font-semibold tracking-wide">
+            Owner's Email <span className="text-red-400">*</span>
+          </label>
+          <input
+            type="email"
+            name="ownerEmail"
+            value={form.ownerEmail || ""}
+            onChange={handleValidatedChange}
+            className={inputClass}
+            required
+          />
+        </div>
       </div>
 
       <div>

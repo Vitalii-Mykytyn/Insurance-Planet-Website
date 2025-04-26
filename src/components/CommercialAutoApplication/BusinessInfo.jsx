@@ -34,6 +34,7 @@ const BusinessInfo = ({ form, handleChange }) => {
           onChange={handleChange}
           className={inputClass}
           placeholder="e.g., ABC Hauling LLC"
+          required
         />
       </div>
 
@@ -97,6 +98,7 @@ const BusinessInfo = ({ form, handleChange }) => {
             onChange={handleChange}
             className={inputClass}
             placeholder="(555) 555-5555"
+            required
           />
         </div>
         <div>
@@ -107,6 +109,7 @@ const BusinessInfo = ({ form, handleChange }) => {
             onChange={handleChange}
             className={inputClass}
             placeholder="company@email.com"
+            required
           />
         </div>
       </div>
